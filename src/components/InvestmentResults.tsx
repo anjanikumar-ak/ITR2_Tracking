@@ -1,6 +1,6 @@
 import React from 'react';
-import { InvestmentTable } from './InvestmentTable';
-import { ComputedInvestment } from '../types';
+import { InvestmentTable } from './InvestmentTable.js';
+import { ComputedInvestment } from '../types.js';
 
 interface InvestmentResultsProps {
   data: ComputedInvestment[];

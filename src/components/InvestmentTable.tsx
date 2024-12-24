@@ -4,7 +4,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { ComputedInvestment } from '../types';
+import { ComputedInvestment } from '../types.js';
 import React from 'react';
 
 const columnHelper = createColumnHelper<ComputedInvestment>();
