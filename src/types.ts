@@ -1,6 +1,6 @@
 export interface Investment {
   stock_code: string;
-  investment_type: 'espp' | 'RSU';
+  investment_type: 'ESPP' | 'RSU';
   stock_quantity: number;
   stock_price: string;
   investment_date: string;
