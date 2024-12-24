@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "allowJs": true,          // Allows JavaScript files to be part of the project.
+      "checkJs": true,          // Enables error reporting in type-checked JavaScript files.
+      "strict": true,           // Enables strict type-checking options.
+      "noEmit": true,
+      "jsx": "react" ,
+      "esModuleInterop": true        // Prevents emitting compiled JavaScript files.
+    },
+    "include": [
+      "./src/**/*"             // Specify the files or directories to include.
+    ]
+}
+  
