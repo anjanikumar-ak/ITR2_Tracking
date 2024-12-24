@@ -5,6 +5,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { ComputedInvestment } from '../types';
+import React from 'react';
 
 const columnHelper = createColumnHelper<ComputedInvestment>();
 
@@ -43,6 +44,15 @@ const columns = [
   }),
   columnHelper.accessor('peak_value_INR', {
     header: 'Peak Value (INR)',
+    cell: info => `₹${info.getValue().toFixed(2)}`,
+  }),
+  columnHelper.accessor('closing_value_USD', {
+    header: 'Closing Value (USD)',
+    cell: info => `$${info.getValue().toFixed(2)}`,
+  }),
+
+  columnHelper.accessor('closing_value_INR', {
+    header: 'Closing Value (INR)',
     cell: info => `₹${info.getValue().toFixed(2)}`,
   }),
   columnHelper.accessor('total_dividend_USD', {

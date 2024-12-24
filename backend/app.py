@@ -1,17 +1,26 @@
 from fastapi import FastAPI,Depends,Request
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import json
-import utils as utils
+
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 dataframes = {}
 
 @app.on_event("startup")
 async def load_dataframes():
     global dataframes
-    dataframes["QCOM_history"] = pd.read_csv("QCOM_HISTORY.csv")
-    dataframes["SBI_REFERENCE_RATES_USD"] = pd.read_csv("SBI_REFERENCE_RATES_USD.csv")
+    dataframes["QCOM_history"] = pd.read_csv("data/QCOM_HISTORY.csv")
+    dataframes["SBI_REFERENCE_RATES_USD"] = pd.read_csv("data/SBI_REFERENCE_RATES_USD.csv")
     print("Dataframes loaded!")
 
 def get_dataframes():
@@ -126,7 +135,8 @@ async def get_investment_history(request:Request):
     return iv_df.to_dict(orient='records')
 
 
-@app.get("/compute")
+@app.get("/api/compute")
+@app.post("/api/compute")
 async def get_investment_history(request:Request):
     try:
         json_data = await request.json()

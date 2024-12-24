@@ -2,11 +2,12 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Investment } from '../types';
+import React from 'react';
 
 const investmentSchema = z.object({
   investments: z.array(z.object({
     stock_code: z.string().min(1, 'Stock code is required'),
-    investment_type: z.enum(['espp', 'RSU']),
+    investment_type: z.enum(['ESPP', 'RSU']),
     stock_quantity: z.number().min(1, 'Quantity must be at least 1'),
     stock_price: z.string().min(1, 'Stock price is required'),
     investment_date: z.string().min(1, 'Investment date is required'),
@@ -24,7 +25,7 @@ export function InvestmentForm({ onSubmit, isLoading }: Props) {
   const { register, control, handleSubmit, formState: { errors } } = useForm<InvestmentFormData>({
     resolver: zodResolver(investmentSchema),
     defaultValues: {
-      investments: [{ stock_code: '', investment_type: 'espp', stock_quantity: 0, stock_price: '', investment_date: '' }]
+      investments: [{ stock_code: '', investment_type: 'ESPP', stock_quantity: 0, stock_price: '', investment_date: '' }]
     }
   });
 
@@ -59,7 +60,7 @@ export function InvestmentForm({ onSubmit, isLoading }: Props) {
                 {...register(`investments.${index}.investment_type`)}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               >
-                <option value="espp">ESPP</option>
+                <option value="ESPP">ESPP</option>
                 <option value="RSU">RSU</option>
               </select>
             </div>
@@ -115,7 +116,7 @@ export function InvestmentForm({ onSubmit, isLoading }: Props) {
       <div className="flex gap-4">
         <button
           type="button"
-          onClick={() => append({ stock_code: '', investment_type: 'espp', stock_quantity: 0, stock_price: '', investment_date: '' })}
+          onClick={() => append({ stock_code: '', investment_type: 'ESPP', stock_quantity: 0, stock_price: '', investment_date: '' })}
           className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
           disabled={isLoading}
         >
